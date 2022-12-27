@@ -1,32 +1,45 @@
 import "./App.css";
-import Header from "./components/header/header";
-import Loading from "./components/loading/loading";
-import styled from "styled-components";
-import react, { useState, useEffect } from "react";
+import Header from "./components/header";
+import Home from "./components/home";
+import About from "./components/about.tsx";
+import Gallery from "./components/gallery";
+import Notfound from "./components/404.tsx";
+import styled, { keyframes } from "styled-components";
+import { Helmet } from "react-helmet";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+const FadeInLogoAnimaion = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
 
 const StyledBackground = styled.div`
-  background-color: black;
   height: 100vh;
   width: 100vw;
+  animation: ${FadeInLogoAnimaion} 3s;
 `;
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
-  return loading ? (
+  return (
     <>
-      <StyledBackground>
-        <Loading />
-      </StyledBackground>
+      <BrowserRouter>
+        <Helmet>
+          <script
+            src="https://kit.fontawesome.com/b17d4fa9e7.js"
+            crossorigin="anonymous"
+          ></script>
+        </Helmet>
+        <StyledBackground>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<Notfound />} />
+          </Routes>
+        </StyledBackground>
+      </BrowserRouter>
     </>
-  ) : (
-    <Header />
   );
 };
 
