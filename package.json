@@ -28,8 +28,12 @@
     "postbuild": "react-snap"
   },
   "react-snap": {
-    "include": ["/", "/about"]
+    "include": [
+      "/",
+      "/about"
+    ]
   },
+  "homepage": "https://hwaryeo.netlify.app",
   "eslintConfig": {
     "extends": [
       "react-app",
