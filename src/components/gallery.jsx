@@ -32,7 +32,7 @@ const Image = styled.img`
 `;
 
 const Gallery = () => {
-  let [src, setSrc] = useState([First, Second]);
+  let [src] = useState([First, Second]);
   return (
     <Container>
       {src.map((source) => {
